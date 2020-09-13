@@ -58,3 +58,35 @@ zip -r adv-r-source.zip crc
 
 Please note that Advanced R is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
+
+
+# Missing Packages
+
+install.packages("lobstr")
+devtools::install_github("hadley/emo")
+install.packages("sloop")
+install.packages("DBI")]
+install.packages("RSQLite")
+install.packages("zeallot")
+install.packages("dbplyr")
+install.packages("profvis")
+install.packages("bench")
+install.packages("ggbeeswarm")
+remotes::install_github('rstudio/rmarkdown')
+update.packages(ask = FALSE, checkBuilt = TRUE)
+tinytex::tlmgr_update()
+
+# fail to compile
+remotes::install_github('yihui/tinytex')
+tinytex::install_tinytex()
+
+# “maker is not found”
+download "Rtools" and configure the environmental variable.
+
+#The font "Inconsolata" cannot be found.
+
+Solve Process: Download Inconsolata font and install it on the computer. 
+
+# Result
+Output created: _book/_main.pdf
+
