@@ -1,40 +1,60 @@
-title: "Compiling Adv-r book"
-author: "yuyu zhang"
-date: "9/12/2020"
+# Advanced R
 
+[![Build Status](https://travis-ci.org/hadley/adv-r.svg?branch=master)](https://travis-ci.org/hadley/adv-r)
 
-# download the book from website
-git clone https://github.com/hadley/adv-r.git
-# dowmload bookdown github repo as a zip file
-https://github.com/rstudio/bookdown-demo
+This is code and text behind the [Advanced R](http://adv-r.hadley.nz)
+book.  The site is built with [bookdown](https://bookdown.org/yihui/bookdown/).
 
-# the packages that needed to be downloade under the compiling
-install.packages("lobstr")
-devtools::install_github("hadley/emo")
-install.packages("sloop")
-install.packages("DBI")
-install.packages("RSQLite")
-install.packages("zeallot")
-install.packages("dbplyr")
-install.packages("profvis")
-install.packages("bench")
-install.packages("ggbeeswarm")
-library(tinytex)
-tlmgr_update()  
+## Diagrams
 
-# Package fontspec Error: The font "Inconsolata" cannot be found
+Omnigraffle:
+  
+* Make sure that 100% is "one postscript point": this ensures canvas
+  size matches physical size. Export at 300 dpi scaled to 100%.
 
-download the inconsolata from website and installed it.
+* Set grid to 1cm with 10 minor units. Ensure there is 2mm padding around
+  all sides of each diagram.
 
-# "make" is not found
-download the Rtools from website and configure the environmental variables. update the rtools.
-then install the package.
-install.packges("make")
+* Conventions:
+    * Text is set in inconsolata 10pt, with text padding set to 3. 
+    * Emoji set in "Apple Color Emoji" 8pt.
+    * Default scalar size is 6mm x 6mm.
+    * Symbols have 4pt rounded corners and plum border.
+    * Arrow heads should be set to 75%.
+    * Names should be coloured in steel.
 
-# LaTeX update
-remotes::install_github('rstudio/rmarkdown')
-update.packages(ask = FALSE, checkBuilt = TRUE)
-tinytex::tlmgr_update()
+Book:
 
-# final step
-Output created: _book/_main.pdf
+* Inconsolata scaled (by fontspec) to match main font is 9.42pt.
+
+* Preview at 100% matches physical size of book. Maxiumum diagram width is 11cm.
+
+RMarkdown
+
+* Remove dpi specification from `include_graphics()`, instead relying
+  on `common.R`. Chunk should have `output.width = NULL`.
+
+* Beware caching: after changing the size of an image you may need to
+  clear the cache before it is correctly updated.
+
+To zip files to for publisher:
+
+```
+mkdir crc
+cp _book/_main.tex crc
+cp -r _bookdown_files/*_files crc
+cp -r diagrams crc
+cp -r screenshots crc
+cp -r emoji crc
+cp mina.jpg crc
+cp krantz.cls crc
+cp book.bib crc
+rm crc/diagrams/*.graffle
+
+zip -r adv-r-source.zip crc
+```
+
+## Code of conduct
+
+Please note that Advanced R is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
